@@ -14,5 +14,8 @@ fn main() {
     
        res = num1/num2 ;
        println!("Quotient => {} ",res);
+
+       res = num1%num2 ;
+       println!("Modular => {} ",res);
     }
     
