@@ -18,4 +18,3 @@ fn main() {
        res = num1%num2 ;
        println!("Modular => {} ",res);
     }
-    
