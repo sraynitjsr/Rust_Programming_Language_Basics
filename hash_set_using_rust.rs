@@ -20,4 +20,19 @@ fn main() {
     hash_set.clear();
 
     println!("HashSet is empty: {}", hash_set.is_empty());
+
+    let numbers = vec![1, 2, 3, 4, 5];
+    let hash_set_from_vec: HashSet<i32> = numbers.iter().cloned().collect();
+    println!("HashSet from vector: {:?}", hash_set_from_vec);
+
+    let set1: HashSet<i32> = [1, 2, 3].iter().cloned().collect();
+    let set2: HashSet<i32> = [3, 4, 5].iter().cloned().collect();
+
+    let union: HashSet<_> = set1.union(&set2).cloned().collect();
+    let intersection: HashSet<_> = set1.intersection(&set2).cloned().collect();
+    let difference: HashSet<_> = set1.difference(&set2).cloned().collect();
+
+    println!("Union: {:?}", union);
+    println!("Intersection: {:?}", intersection);
+    println!("Difference: {:?}", difference);
 }
