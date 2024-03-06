@@ -1,22 +1,40 @@
 use std::collections::BinaryHeap;
-use std::cmp::Reverse;
+use std::cmp::{Ordering, Reverse};
+use std::fmt;
 
 struct PriorityItem {
     priority: i32,
     value: String,
 }
 
-impl Ord for PriorityItem {
-    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.priority.cmp(&other.priority)
+impl fmt::Debug for PriorityItem {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        f.debug_struct("PriorityItem")
+            .field("priority", &self.priority)
+            .field("value", &self.value)
+            .finish()
     }
 }
 
 impl PartialOrd for PriorityItem {
-    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        Some(self.cmp(other))
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.priority.cmp(&other.priority))
     }
 }
+
+impl Ord for PriorityItem {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.priority.cmp(&other.priority)
+    }
+}
+
+impl PartialEq for PriorityItem {
+    fn eq(&self, other: &Self) -> bool {
+        self.priority == other.priority
+    }
+}
+
+impl Eq for PriorityItem {}
 
 fn main() {
     let mut priority_queue = BinaryHeap::new();
